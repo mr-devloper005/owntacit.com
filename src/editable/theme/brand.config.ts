@@ -5,6 +5,7 @@ import { getProductKind } from '@/design/factory/get-product-kind'
 const { recipe } = getFactoryState()
 const productKind = getProductKind(recipe)
 
+// Reference: kitpro-silentlab.webflow.io — monochrome, cream-on-black accent.
 export const slot4BrandConfig = {
   siteName: siteIdentity.name,
   tagline: siteIdentity.tagline,
@@ -13,7 +14,7 @@ export const slot4BrandConfig = {
   productKind,
   ogImage: siteIdentity.ogImage,
   accents: {
-    primary: '#d32323',
+    primary: '#000000',
     surface: '#ffffff',
   },
 } as const
