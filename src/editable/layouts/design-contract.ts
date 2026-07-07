@@ -1,39 +1,50 @@
 import type { CSSProperties } from 'react'
 
+/*
+  Design contract for kitpro-silentlab reference.
+  Monochrome palette, soft-corner buttons, bordered cards, huge typography.
+  All colors ship via CSS variables — never hardcode the palette in JSX.
+*/
+
 export const editableRootStyle = {
-  // Yelp-style system: clean white surfaces, signature red accent, hairline
-  // gray borders, near-black text. Flat (no gradients), generous and premium.
   '--slot4-page-bg': '#ffffff',
-  '--slot4-page-text': '#1a1a1a',
-  '--slot4-panel-bg': '#f7f7f7',
+  '--slot4-page-text': '#000000',
+  '--slot4-panel-bg': '#f5f5f5',       // whitesmoke
   '--slot4-surface-bg': '#ffffff',
-  '--slot4-muted-text': '#6b6b6b',
-  '--slot4-soft-muted-text': '#999999',
-  '--slot4-accent': '#d32323',
-  '--slot4-accent-fill': '#d32323',
-  '--slot4-accent-soft': '#fdecec',
-  '--slot4-on-accent': '#ffffff',
-  '--slot4-dark-bg': '#1a1a1a',
-  '--slot4-dark-text': '#ffffff',
-  '--slot4-media-bg': '#eeeeee',
-  '--slot4-cream': '#ffffff',
-  '--slot4-warm': '#f7f7f7',
-  '--slot4-lavender': '#ffffff',
-  '--slot4-gray': '#f7f7f7',
+  '--slot4-muted-text': '#5d5d5d',     // dark-grey
+  '--slot4-soft-muted-text': '#9c9c9c', // grey
+  '--slot4-line': '#d1d1d1',           // border-secondary
+  '--slot4-line-strong': '#9c9c9c',
+  '--slot4-accent': '#000000',         // black is the accent surface
+  '--slot4-accent-fill': '#000000',
+  '--slot4-accent-soft': '#f5f5f5',
+  '--slot4-on-accent': '#f8f7f0',      // cream text on black
+  '--slot4-dark-bg': '#000000',
+  '--slot4-dark-text': '#f8f7f0',
+  '--slot4-sub-black': '#1e1e1e',
+  '--slot4-media-bg': '#f5f5f5',
+  '--slot4-cream': '#f8f7f0',
+  '--slot4-warm': '#ffffff',
+  '--slot4-gray': '#f5f5f5',
   '--slot4-body-gradient': 'none',
   '--editable-page-bg': '#ffffff',
-  '--editable-page-text': '#1a1a1a',
-  '--editable-container': '1500px',
-  '--editable-border': '#e6e6e6',
+  '--editable-page-text': '#000000',
+  '--editable-container': '1360px',
+  '--editable-border': '#d1d1d1',
+  '--editable-border-strong': '#9c9c9c',
   '--editable-nav-bg': '#ffffff',
-  '--editable-nav-text': '#1a1a1a',
-  '--editable-nav-active': '#d32323',
-  '--editable-nav-active-text': '#ffffff',
-  '--editable-cta-bg': '#d32323',
-  '--editable-cta-text': '#ffffff',
+  '--editable-nav-text': '#000000',
+  '--editable-nav-active': '#000000',
+  '--editable-nav-active-text': '#f8f7f0',
+  '--editable-cta-bg': '#000000',
+  '--editable-cta-text': '#f8f7f0',
   '--editable-search-bg': '#ffffff',
-  '--editable-footer-bg': '#ffffff',
-  '--editable-footer-text': '#1a1a1a',
+  '--editable-footer-bg': '#000000',
+  '--editable-footer-text': '#f8f7f0',
+  '--editable-radius-button': '0.35rem',
+  '--editable-radius-card': '0.6rem',
+  '--editable-radius-input': '0.35rem',
+  '--editable-radius-tag': '0.35rem',
 } as CSSProperties
 
 export const editablePalette = {
@@ -45,68 +56,88 @@ export const editablePalette = {
   surfaceText: 'text-[var(--slot4-page-text)]',
   mutedText: 'text-[var(--slot4-muted-text)]',
   softMutedText: 'text-[var(--slot4-soft-muted-text)]',
-  accentText: 'text-[var(--slot4-accent)]',
+  accentText: 'text-[var(--slot4-page-text)]',
   accentBg: 'bg-[var(--slot4-accent-fill)]',
   accentSoftBg: 'bg-[var(--slot4-accent-soft)]',
-  accentSoftText: 'text-[var(--slot4-accent-soft)]',
+  accentSoftText: 'text-[var(--slot4-cream)]',
   onAccentText: 'text-[var(--slot4-on-accent)]',
   darkBg: 'bg-[var(--slot4-dark-bg)]',
   darkText: 'text-[var(--slot4-dark-text)]',
   mediaBg: 'bg-[var(--slot4-media-bg)]',
   creamBg: 'bg-[var(--slot4-cream)]',
   warmBg: 'bg-[var(--slot4-warm)]',
-  lavenderBg: 'bg-[var(--slot4-lavender)]',
+  lavenderBg: 'bg-[var(--slot4-warm)]',
   grayBg: 'bg-[var(--slot4-gray)]',
   border: 'border-[var(--editable-border)]',
-  darkBorder: 'border-white/10',
-  shadow: 'shadow-[0_1px_3px_rgba(0,0,0,0.08)]',
-  shadowStrong: 'shadow-[0_4px_18px_rgba(0,0,0,0.12)]',
-  overlay: 'bg-[linear-gradient(180deg,rgba(0,0,0,0.02),rgba(0,0,0,0.72))]',
+  darkBorder: 'border-white/12',
+  shadow: 'shadow-[0_1px_0_rgba(0,0,0,0.04)]',
+  shadowStrong: 'shadow-[0_18px_60px_rgba(0,0,0,0.10)]',
+  overlay: 'bg-[linear-gradient(180deg,rgba(0,0,0,0.04),rgba(0,0,0,0.72))]',
 } as const
 
 export const editableDesignContract = {
   shell: {
     page: `min-h-screen ${editablePalette.pageBg} ${editablePalette.pageText}`,
-    section: 'mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8',
-    sectionY: 'py-14 sm:py-16 lg:py-20',
+    section: 'mx-auto w-full max-w-[var(--editable-container)] px-5 sm:px-8 lg:px-10',
+    sectionY: 'py-16 sm:py-24 lg:py-32',
+    sectionYTight: 'py-12 sm:py-16 lg:py-20',
   },
   layout: {
     safeGrid: 'grid gap-6 md:grid-cols-2 xl:grid-cols-3',
     featureGrid: 'grid gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:items-center',
     rail: 'flex snap-x gap-5 overflow-x-auto pb-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden',
-    minRailCard: 'w-[140px] shrink-0 snap-start sm:w-[160px]',
+    minRailCard: 'w-[280px] shrink-0 snap-start sm:w-[320px]',
   },
   type: {
-    eyebrow: 'text-xs font-semibold uppercase tracking-[0.28em] text-[var(--slot4-accent)]',
-    heroTitle: 'text-4xl font-semibold leading-[1.08] tracking-[-0.02em] sm:text-5xl lg:text-[3.25rem]',
-    sectionTitle: 'text-3xl font-semibold tracking-[-0.02em] sm:text-4xl',
-    body: 'text-base leading-relaxed',
+    // Mono eyebrow chip, all-caps, tight tracking. DM Mono is the base body face.
+    eyebrow: 'editable-mono text-[10px] font-medium uppercase tracking-[0.28em] text-[var(--slot4-muted-text)]',
+    // HUGE hero display, Public Sans 700, tight neg letter-spacing (mimics 11vw h1).
+    heroTitle: 'editable-display text-[clamp(2.6rem,10vw,10rem)] font-black leading-[0.94] tracking-[-0.02em]',
+    sectionTitle: 'editable-display text-[clamp(2rem,6.5vw,4.6rem)] font-black leading-[1.02] tracking-[-0.015em]',
+    subSectionTitle: 'editable-display text-[clamp(1.5rem,4vw,2.6rem)] font-bold leading-[1.1] tracking-[-0.01em]',
+    body: 'text-[15px] leading-[1.75] text-[var(--slot4-muted-text)] font-light',
+    lead: 'text-[clamp(1rem,1.4vw,1.25rem)] leading-[1.7] text-[var(--slot4-muted-text)] font-light',
+    emphasis: 'editable-display italic text-[var(--slot4-page-text)] font-medium',
   },
   surface: {
-    card: `rounded-xl border ${editablePalette.border} ${editablePalette.surfaceBg} ${editablePalette.shadow}`,
-    soft: `rounded-xl border ${editablePalette.border} ${editablePalette.panelBg}`,
-    dark: `rounded-xl ${editablePalette.darkBg} ${editablePalette.darkText} ${editablePalette.shadowStrong}`,
+    // Bordered cards, subtle radius (0.6rem card / 1vw desktop-feel).
+    card: `rounded-[var(--editable-radius-card)] border ${editablePalette.border} ${editablePalette.surfaceBg}`,
+    soft: `rounded-[var(--editable-radius-card)] border ${editablePalette.border} ${editablePalette.panelBg}`,
+    dark: `rounded-[var(--editable-radius-card)] ${editablePalette.darkBg} ${editablePalette.darkText}`,
+    hairline: `border ${editablePalette.border}`,
   },
   button: {
-    primary: `inline-flex items-center justify-center gap-2 rounded-lg bg-[var(--slot4-accent-fill)] px-6 py-3 text-sm font-bold tracking-[0.01em] text-[var(--slot4-on-accent)] transition duration-200 hover:brightness-95 active:scale-[0.98]`,
-    secondary: `inline-flex items-center justify-center gap-2 rounded-lg border border-[var(--editable-border)] bg-[var(--slot4-surface-bg)] px-6 py-3 text-sm font-bold tracking-[0.01em] text-[var(--slot4-page-text)] transition duration-200 hover:border-[var(--slot4-accent)] hover:text-[var(--slot4-accent)] active:scale-[0.98]`,
-    accent: `inline-flex items-center justify-center gap-2 rounded-lg ${editablePalette.accentBg} px-6 py-3 text-sm font-bold text-[var(--slot4-on-accent)] transition duration-200 hover:brightness-95 active:scale-[0.98]`,
+    // Soft-corner buttons: barely rounded, DM Mono label, cream on black.
+    primary: `inline-flex items-center justify-center gap-2 rounded-[var(--editable-radius-button)] bg-[var(--slot4-accent-fill)] px-6 py-3 text-[13px] font-medium uppercase tracking-[0.12em] text-[var(--slot4-on-accent)] editable-mono transition duration-300 hover:bg-[var(--slot4-sub-black)] active:scale-[0.985]`,
+    secondary: `inline-flex items-center justify-center gap-2 rounded-[var(--editable-radius-button)] border border-[var(--slot4-line-strong)] bg-transparent px-6 py-3 text-[13px] font-medium uppercase tracking-[0.12em] text-[var(--slot4-page-text)] editable-mono transition duration-300 hover:bg-[var(--slot4-page-text)] hover:text-[var(--slot4-on-accent)] active:scale-[0.985]`,
+    accent: `inline-flex items-center justify-center gap-2 rounded-[var(--editable-radius-button)] bg-[var(--slot4-accent-fill)] px-6 py-3 text-[13px] font-medium uppercase tracking-[0.12em] text-[var(--slot4-on-accent)] editable-mono transition duration-300 hover:bg-[var(--slot4-sub-black)] active:scale-[0.985]`,
+    ghost: `inline-flex items-center justify-center gap-2 rounded-[var(--editable-radius-button)] px-4 py-2.5 text-[13px] font-medium uppercase tracking-[0.12em] text-[var(--slot4-page-text)] editable-mono transition duration-300 hover:text-[var(--slot4-muted-text)]`,
+    onDark: `inline-flex items-center justify-center gap-2 rounded-[var(--editable-radius-button)] bg-[var(--slot4-on-accent)] px-6 py-3 text-[13px] font-medium uppercase tracking-[0.12em] text-[var(--slot4-page-text)] editable-mono transition duration-300 hover:bg-white active:scale-[0.985]`,
+  },
+  badge: {
+    pill: `inline-flex items-center gap-2 rounded-full border border-[var(--editable-border)] bg-[var(--slot4-surface-bg)] px-3 py-1 text-[10px] font-medium uppercase tracking-[0.24em] text-[var(--slot4-muted-text)] editable-mono`,
+    accentPill: `inline-flex items-center gap-2 rounded-full bg-[var(--slot4-accent-fill)] px-3 py-1 text-[10px] font-medium uppercase tracking-[0.24em] text-[var(--slot4-on-accent)] editable-mono`,
+    tag: `inline-flex items-center gap-1 rounded-[var(--editable-radius-tag)] border border-[var(--editable-border)] px-2.5 py-1 text-[10px] font-medium uppercase tracking-[0.18em] text-[var(--slot4-muted-text)] editable-mono`,
   },
   media: {
-    frame: `relative overflow-hidden rounded-xl ${editablePalette.mediaBg}`,
-    ratio: 'aspect-[2/3]',
+    frame: `relative overflow-hidden rounded-[var(--editable-radius-card)] border border-[var(--editable-border)] ${editablePalette.mediaBg}`,
+    frameFull: `relative overflow-hidden rounded-[var(--editable-radius-card)] ${editablePalette.mediaBg}`,
+    ratio: 'aspect-[4/5]',
+    ratioWide: 'aspect-[16/10]',
+    ratioSquare: 'aspect-square',
   },
   motion: {
-    lift: 'transition duration-300 hover:-translate-y-1 hover:shadow-[0_8px_28px_rgba(0,0,0,0.14)]',
-    fade: 'transition duration-300 hover:opacity-80',
+    lift: 'transition duration-500 hover:-translate-y-1',
+    fade: 'transition duration-300 hover:opacity-70',
+    zoom: 'transition duration-700 group-hover:scale-[1.03]',
   },
 } as const
 
 export const aiLayoutRules = [
-  'Change the full site color palette in editableRootStyle first; all homepage sections consume those CSS variables.',
-  'Keep page structure in src/editable/sections/HomeSections.tsx so AI can redesign the whole home experience in one file.',
-  'Use wide readable grids; never create skinny columns for paragraphs or cards.',
-  'Use horizontal rails for dense post browsing, like the MysteryCoder reference layout.',
-  'Keep dynamic post fetching intact; do not replace posts with mock arrays.',
-  'Use postHref() for all post links so task-specific routes keep working.',
+  'All colors come from CSS vars in editableRootStyle — never hardcode reference palette in JSX.',
+  'Display face = Public Sans (700+), body face = DM Mono (300).',
+  'Buttons are soft-corner (0.35rem), NOT pill and NOT sharp.',
+  'Cards are bordered with subtle radius; no heavy drop-shadow.',
+  'Home hero uses a truly huge display size (clamp 2.6rem–10vw).',
+  'Never surface profiles in public feeds; footer discovery lists Reference Library only.',
 ] as const
